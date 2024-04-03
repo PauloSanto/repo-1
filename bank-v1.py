@@ -15,7 +15,6 @@ extrato = ''
 numero_saques = 0
 LIMITE_SAQUES = int(3)
 num = 0
-form = '{:.2f}' 
 cont = 0
 while True:
     
@@ -32,8 +31,7 @@ while True:
         else:
             print('Somente são aceitos valores positivos para deposito.')
             
-        form = '{:.2f}'    
-        extrato += str(cont)+ ' - ' + 'deposito = R$' + form.format(num) + '\n'
+        extrato += f'{str(cont)} - deposito = R${num:.2f}\n'
         
     elif opcao == 's':
         print('*' *35)
@@ -45,7 +43,7 @@ while True:
             cont += 1
             numero_saques += 1
             print(f'Efetuado saque de R${num:.2f}\nSaldo atualizado: R${saldo:.2f}')
-            extrato += str(cont)+ ' - ' + 'saque = R$' + form.format(num) + '\n'
+            extrato += f'{str(cont)} - saque = R${num:.2f}\n'
         else:
             print('Não foi possivel executar a operação saque.')
             print('Saldo insuficiente.')if saldo < num else ''
@@ -56,7 +54,7 @@ while True:
         print('*' *35)
         print('{:^35}'.format('   OPERAÇÃO EXTRATO    ' ))
         print('*' *35)
-        print(extrato)
+        print('Nao foram realizadas movimentações' if not extrato else extrato)
         print('saldo = R${:.2f}'.format(saldo))
         print('*' *35)
 
