@@ -99,6 +99,8 @@ def criar_conta():
         cont[0]['usuario'] = usuario[x]
         conta.extend(cont)
         print('\nConta cadastrada com sucesso!.')
+    else:
+         print('\nCPF não cadastrado como usuario.')
         
 
     
@@ -138,13 +140,15 @@ def test_dep_saque():
         print(f'Numero da agencia: {conta[i]["agencia"]}')
         print(f'Nome do usuario: {conta[i]["usuario"]["nome"]}')
         print('*' *35)
+        return(i)
     else:
         print('Não foi possivel executar a operação.')
-        print('CPF informado não tem conta.')
+        print('CPF confirmado não tem conta.')
         print('*' *35)
-    return(i) 
-      
+        return(-1)
+              
 def test_conf():
+    
     conf = input('Confirma dados [S/N]: \n').upper()
     if conf == 'S':        
         return(True)
@@ -198,9 +202,10 @@ while True:
         print('{:^35}'.format('   OPERAÇÃO EXTRATO    ' ))
         print('*' *35)
         i = test_dep_saque()
-        if test_conf():
-            imp_ext(i)
-            print('*' *35)
+        if i != -1:
+            if test_conf():
+                imp_ext(i)
+                print('*' *35)
         
     elif opcao == 'u':
         print('*' *35)
